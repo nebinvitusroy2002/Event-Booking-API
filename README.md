@@ -14,26 +14,37 @@ Features:
 9. Includes unit tests for booking logic
 
 Configuration:
+
 spring.datasource.url=jdbc:h2:mem:testdb
+
 spring.datasource.driverClassName=org.h2.Driver
+
 spring.datasource.username=sa
+
 spring.datasource.password=
 
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
 spring.jpa.hibernate.ddl-auto=create-drop
+
 spring.jpa.defer-datasource-initialization=true
 
 spring.h2.console.enabled=true
+
 spring.h2.console.path=/h2-console
 
 Sample Data:
+
 INSERT INTO events (id, name, available_slots) VALUES
 (1, '🎸 Concert 2026', 100),
 (2, '💻 Tech Workshop', 50);
 
 API Endpoints:
+
 1.Get All Events:
+
    GET /api/events
+   
 Response:
 {
   "success": true,
@@ -47,7 +58,9 @@ Response:
 }
 
 2.Get Event by ID:
+
    GET /api/events/{id}
+   
 If not found:
 {
   "success": false,
@@ -55,24 +68,32 @@ If not found:
 }
 
 3.Book Tickets:
+
    POST /api/events/{id}/book
+   
 Request:
+
 {
   "quantity": 3
 }
+
 Success:
+
 {
   "success": true,
   "message": "🎉 Booked 3 tickets!",
   "remaining_slots": 97
 }
+
 Failure:
+
 {
   "success": false,
   "message": "Only 50 tickets available, but you asked for 500!"
 }
 
 Unit Testing:
+
 Booking logic is tested using JUnit 5 and Mockito.
 
 Tests cover:
