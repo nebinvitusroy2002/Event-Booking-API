@@ -1,4 +1,5 @@
 Event Booking API
+
 Spring Boot REST API for listing events and booking tickets.The application uses Java, Spring Boot, and an in-memory H2 database with zero external setup.
 
 Features:
