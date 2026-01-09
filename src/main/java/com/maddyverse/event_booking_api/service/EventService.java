@@ -13,16 +13,10 @@ import java.util.List;
 public class EventService {
 
     @Autowired
-    private final EventRepository eventRepository;
+    private EventRepository eventRepository;
 
     @Autowired
-    private final BookingRepository bookingRepository;
-
-
-    public EventService(EventRepository repository,BookingRepository bookingRepository) {
-        this.eventRepository = repository;
-        this.bookingRepository = bookingRepository;
-    }
+    private BookingRepository bookingRepository;
 
     public List<Event> getAllEvents(){
         return eventRepository.findAll();
