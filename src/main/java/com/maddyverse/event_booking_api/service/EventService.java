@@ -12,12 +12,15 @@ import java.util.List;
 @Service
 public class EventService {
 
-    @Autowired
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
+    
+    private final BookingRepository bookingRepository;
 
-    @Autowired
-    private BookingRepository bookingRepository;
-
+    public EventService(EventRepository repository,BookingRepository bookingRepository) {
+        this.eventRepository = repository;
+        this.bookingRepository = bookingRepository;
+    }
+    
     public List<Event> getAllEvents(){
         return eventRepository.findAll();
     }
