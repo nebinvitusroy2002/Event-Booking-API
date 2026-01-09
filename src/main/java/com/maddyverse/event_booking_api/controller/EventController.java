@@ -15,11 +15,7 @@ import java.util.Map;
 public class EventController {
 
     @Autowired
-    private final EventService service;
-
-    public EventController(EventService service) {
-        this.service = service;
-    }
+    private EventService service;
 
     @GetMapping
     public Map<String, Object> getAllEvents() {
