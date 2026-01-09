@@ -14,8 +14,11 @@ import java.util.Map;
 @RequestMapping("/api/events")
 public class EventController {
 
-    @Autowired
-    private EventService service;
+    private final EventService service;
+
+    public EventController(EventService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public Map<String, Object> getAllEvents() {
