@@ -1,6 +1,7 @@
 package com.maddyverse.event_booking_api;
 
 import com.maddyverse.event_booking_api.model.Event;
+import com.maddyverse.event_booking_api.repository.BookingRepository;
 import com.maddyverse.event_booking_api.repository.EventRepository;
 import com.maddyverse.event_booking_api.service.EventService;
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,9 @@ public class EventServiceTest {
     @Mock
     private EventRepository eventRepository;
 
+    @Mock
+    private BookingRepository bookingRepository;
+
     @InjectMocks
     private EventService eventService;
 
@@ -29,11 +33,13 @@ public class EventServiceTest {
         Event event = new Event(1, "Concert", 10);
         when(eventRepository.findById(1)).thenReturn(Optional.of(event));
         when(eventRepository.save(any(Event.class))).thenAnswer(i -> i.getArgument(0));
+        when(bookingRepository.save(any())).thenAnswer(i -> i.getArgument(0));
 
         Event updatedEvent = eventService.bookTickets(1, 3);
 
         assertEquals(7, updatedEvent.getAvailableSlots());
         verify(eventRepository).save(event);
+        verify(bookingRepository).save(any());
     }
 
     @Test
